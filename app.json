@@ -3,9 +3,10 @@
     "name": "atin-score",
     "slug": "atin-score",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": ["android"],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,6 +23,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "expo": {
+      "experiments": { "tsconfigPaths": true }
     }
   }
 }
