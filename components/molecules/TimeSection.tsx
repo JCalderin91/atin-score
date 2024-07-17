@@ -15,6 +15,7 @@ const TimeSection = ({ timer }: { timer: Timer }) => {
           fontSize: 60,
           color: timer?.lastTen ? Colors.error : "black",
           fontWeight: 800,
+          width: 155,
         }}
       >
         {timer.value.minutes}:{timer.value.seconds}

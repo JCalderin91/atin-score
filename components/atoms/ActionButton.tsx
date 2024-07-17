@@ -5,6 +5,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  Vibration,
 } from "react-native";
 
 type Props = {
@@ -38,7 +39,15 @@ export function ActionButton({ children, type, onPress }: Props) {
   );
 
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    <Pressable
+      onPress={(ev) => {
+        if (onPress) {
+          Vibration.vibrate(20);
+          onPress(ev);
+        }
+      }}
+      style={styles.button}
+    >
       <Text style={styles.text}>{children}</Text>
     </Pressable>
   );

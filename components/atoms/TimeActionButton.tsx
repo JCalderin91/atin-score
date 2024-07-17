@@ -4,6 +4,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  Vibration,
 } from "react-native";
 
 type Props = {
@@ -16,7 +17,12 @@ export function TimeActionButton({ children, type, onPress }: Props) {
   const { Colors } = useTheme();
   return (
     <Pressable
-      onPress={onPress}
+      onPress={(ev) => {
+        if (onPress) {
+          Vibration.vibrate(50);
+          onPress(ev);
+        }
+      }}
       style={[styles.button, { backgroundColor: Colors.bgButton }]}
     >
       <Text
