@@ -12,19 +12,23 @@ import ResetButton from "@/components/atoms/ResetButton";
 import WatermarkImage from "@/components/atoms/WatermarkImage";
 import { Tag } from "@/components/atoms/Tag";
 import { useTheme } from "@/hooks";
+import { useDimensions } from "@/hooks/useDimensions";
+import { StatusBar } from "expo-status-bar";
 
 const Main = () => {
   const { timer, playerA, playerB, resetAll, winnerColor } =
     useContext(CombatContext);
   const { Colors } = useTheme();
+  const { height } = useDimensions();
 
   return (
     <View
       style={[
         styles.container,
-        { backgroundColor: winnerColor || Colors.defaultBgColor },
+        { backgroundColor: winnerColor || Colors.defaultBgColor, height },
       ]}
     >
+      <StatusBar style="light" hidden />
       <WatermarkImage />
       <View style={styles.topSection}>
         <FaultAndExitsActions player={playerA} />
@@ -62,14 +66,15 @@ export default Main;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 25,
+    paddingVertical: 2,
     paddingHorizontal: 10,
     position: "relative",
+    justifyContent: "center",
   },
   topSection: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 12,
+    padding: 5,
     alignItems: "center",
   },
   timeContainer: {

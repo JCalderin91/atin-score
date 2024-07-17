@@ -1,12 +1,14 @@
 {
   "expo": {
-    "name": "atin-score",
+    "name": "ATIN Score",
     "slug": "atin-score",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,13 +21,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jcaldeirn91.atinscore"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "expo": {
-      "experiments": { "tsconfigPaths": true }
+      "experiments": {
+        "tsconfigPaths": true
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e7a8d196-f0a5-42eb-ac31-e2767f2b0b7b"
+      }
     }
   }
 }

@@ -1,12 +1,14 @@
+import { useDimensions } from "@/hooks/useDimensions";
 import { Image, StyleSheet } from "react-native";
 
 const logo = require("@/assets/logo-atin.png");
 
 const WatermarkImage = () => {
+  const { height } = useDimensions();
   return (
     <Image
       source={logo}
-      style={styles.logo}
+      style={[styles.logo, { height: height * 0.96, top: height * 0.02 }]}
       resizeMode="contain"
       blurRadius={2.5}
     />
@@ -20,8 +22,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: "center",
     alignItems: "center",
-    height: 320,
-    top: 15,
     opacity: 0.25,
   },
 });
