@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks";
+import { useDimensions } from "@/hooks/useDimensions";
 import { StyleSheet, Text, View } from "react-native";
 
 type Props = {
@@ -7,17 +8,27 @@ type Props = {
 
 export function Tag({ children }: Props) {
   const { Colors } = useTheme();
+  const { height, width } = useDimensions();
   return (
-    <View style={[styles.button, { backgroundColor: Colors.bgBadge }]}>
-      <Text style={styles.text}>{children}</Text>
+    <View
+      style={[
+        styles.button,
+        {
+          backgroundColor: Colors.bgBadge,
+          width: width * 0.063,
+          height: height * 0.1,
+        },
+      ]}
+    >
+      <Text style={[styles.text, { fontSize: height * 0.058 }]}>
+        {children}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    width: 55,
-    height: 38,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
@@ -25,8 +36,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   text: {
-    fontSize: 24,
-    lineHeight: 32,
     fontWeight: "800",
   },
 });

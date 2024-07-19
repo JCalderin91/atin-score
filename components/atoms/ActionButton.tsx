@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks";
+import { useDimensions } from "@/hooks/useDimensions";
 import { useMemo } from "react";
 import {
   GestureResponderEvent,
@@ -16,26 +17,27 @@ type Props = {
 
 export function ActionButton({ children, type, onPress }: Props) {
   const { Colors } = useTheme();
+  const { height, width } = useDimensions();
   const styles = useMemo(
     () =>
       StyleSheet.create({
         button: {
           backgroundColor: Colors.bgButton,
-          width: 50,
-          height: 44,
+          width: width * 0.0572,
+          height: height * 0.112,
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 8,
           margin: 4,
         },
         text: {
-          fontSize: 24,
-          lineHeight: 32,
+          fontSize: height * 0.065,
+          lineHeight: height * 0.08,
           fontWeight: "800",
           color: type === "add" ? Colors.success : Colors.error,
         },
       }),
-    [Colors, type],
+    [Colors.bgButton, Colors.error, Colors.success, height, type, width],
   );
 
   return (

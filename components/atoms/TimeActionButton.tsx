@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks";
+import { useDimensions } from "@/hooks/useDimensions";
 import {
   GestureResponderEvent,
   Pressable,
@@ -15,6 +16,7 @@ type Props = {
 
 export function TimeActionButton({ children, type, onPress }: Props) {
   const { Colors } = useTheme();
+  const { height, width } = useDimensions();
   return (
     <Pressable
       onPress={(ev) => {
@@ -23,12 +25,20 @@ export function TimeActionButton({ children, type, onPress }: Props) {
           onPress(ev);
         }
       }}
-      style={[styles.button, { backgroundColor: Colors.bgButton }]}
+      style={[
+        styles.button,
+        {
+          backgroundColor: Colors.bgButton,
+          width: width * 0.1031,
+          height: height * 0.1527,
+        },
+      ]}
     >
       <Text
         style={{
           ...styles.text,
           color: type === "add" ? Colors.success : Colors.error,
+          fontSize: height * 0.0509,
         }}
       >
         {children}
@@ -39,15 +49,12 @@ export function TimeActionButton({ children, type, onPress }: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 90,
-    height: 60,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 16,
     margin: 10,
   },
   text: {
-    fontSize: 20,
     fontWeight: 900,
   },
 });
