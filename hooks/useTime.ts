@@ -5,6 +5,8 @@ type TimeFormatted = {
   seconds: string;
 };
 
+const DEFAULT_TIME_IN_SECONDS = 5;
+
 type TimeContextIType = {
   time: number;
   isActive: boolean;
@@ -18,7 +20,7 @@ type TimeContextIType = {
 };
 
 export const useTime = (): TimeContextIType => {
-  const [time, setTime] = useState(90);
+  const [time, setTime] = useState(DEFAULT_TIME_IN_SECONDS);
   const [isActive, setIsActive] = useState(false);
   const interval = useRef<any>(null);
 
@@ -41,7 +43,7 @@ export const useTime = (): TimeContextIType => {
   };
 
   const reset = () => {
-    setTime(90);
+    setTime(DEFAULT_TIME_IN_SECONDS);
     setIsActive(false);
   };
 
