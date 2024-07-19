@@ -17,11 +17,11 @@ export function ScoreIndicator({ children, type }: Props) {
       style={{
         ...styles.container,
         backgroundColor: bgColor,
-        height: height * 0.43,
-        width: width * 0.15,
+        height: height * 0.4,
+        width: width * 0.12,
       }}
     >
-      <Text style={[styles.text, { fontSize: height * 0.35 }]}>{children}</Text>
+      <Text style={[styles.text, { fontSize: height * 0.28 }]}>{children}</Text>
     </View>
   );
 }

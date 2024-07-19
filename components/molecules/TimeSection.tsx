@@ -8,17 +8,17 @@ const TimeSection = ({ timer }: { timer: Timer }) => {
   const { Colors } = useTheme();
   const { height, width } = useDimensions();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { gap: width * 0.01145 }]}>
       <ActionButton onPress={() => timer.quitTime(10)} type="quit">
         10s
       </ActionButton>
       <Text
         style={{
-          fontSize: height * 0.1527,
+          fontSize: height * 0.13,
           color: timer?.lastTen ? Colors.error : "black",
           fontWeight: 800,
           textAlign: "center",
-          width: width * 0.185,
+          width: width * 0.19,
         }}
       >
         {timer.value.minutes}:{timer.value.seconds}
@@ -36,6 +36,5 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
   },
 });

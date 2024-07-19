@@ -19,13 +19,18 @@ const Main = () => {
   const { timer, playerA, playerB, resetAll, winnerColor } =
     useContext(CombatContext);
   const { Colors } = useTheme();
-  const { height } = useDimensions();
+  const { height, width } = useDimensions();
 
   return (
     <View
       style={[
         styles.container,
-        { backgroundColor: winnerColor || Colors.defaultBgColor, height },
+        {
+          backgroundColor: winnerColor || Colors.defaultBgColor,
+          height,
+          paddingHorizontal: width * 0.009,
+          paddingVertical: height * 0.02,
+        },
       ]}
     >
       <StatusBar style="light" hidden />
@@ -50,7 +55,9 @@ const Main = () => {
         <ScoreIndicator type="B">{playerB?.points}</ScoreIndicator>
         <FaultAndExitsActions player={playerB} />
       </View>
-      <View style={styles.bottomContainer}>
+      <View
+        style={[styles.bottomContainer, { paddingVertical: height * 0.02 }]}
+      >
         <PointsControllers player={playerA} />
         <View style={{ justifyContent: "center" }}>
           <StartButton timer={timer} />
@@ -66,15 +73,12 @@ export default Main;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 2,
-    paddingHorizontal: 10,
     position: "relative",
     justifyContent: "center",
   },
   topSection: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 5,
     alignItems: "center",
   },
   timeContainer: {
@@ -82,12 +86,11 @@ const styles = StyleSheet.create({
   },
   centerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   bottomContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
+    justifyContent: "space-around",
     alignItems: "center",
   },
 });

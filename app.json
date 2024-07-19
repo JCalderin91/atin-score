@@ -14,18 +14,12 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.jcaldeirn91.atinscore"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.jcalderin91.atinscore"
     },
     "expo": {
       "experiments": {

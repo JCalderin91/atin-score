@@ -3,9 +3,9 @@ import { useDimensions } from "@/hooks/useDimensions";
 import { useMemo } from "react";
 import {
   GestureResponderEvent,
-  Pressable,
   StyleSheet,
   Text,
+  TouchableOpacity,
   Vibration,
 } from "react-native";
 
@@ -23,15 +23,16 @@ export function ActionButton({ children, type, onPress }: Props) {
       StyleSheet.create({
         button: {
           backgroundColor: Colors.bgButton,
-          width: width * 0.0572,
+          width: width * 0.0575,
           height: height * 0.112,
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 8,
-          margin: 4,
+          marginHorizontal: width * 0.0043,
+          marginVertical: height * 0.01,
         },
         text: {
-          fontSize: height * 0.065,
+          fontSize: height * 0.06,
           lineHeight: height * 0.08,
           fontWeight: "800",
           color: type === "add" ? Colors.success : Colors.error,
@@ -41,7 +42,7 @@ export function ActionButton({ children, type, onPress }: Props) {
   );
 
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={(ev) => {
         if (onPress) {
           Vibration.vibrate(20);
@@ -49,8 +50,9 @@ export function ActionButton({ children, type, onPress }: Props) {
         }
       }}
       style={styles.button}
+      activeOpacity={0.6}
     >
       <Text style={styles.text}>{children}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 }

@@ -17,6 +17,8 @@ export function Tag({ children }: Props) {
           backgroundColor: Colors.bgBadge,
           width: width * 0.063,
           height: height * 0.1,
+          marginHorizontal: width * 0.00458,
+          marginVertical: height * 0.01018,
         },
       ]}
     >
@@ -32,8 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
-    margin: 4,
-    borderWidth: 2,
+    borderWidth: 1,
   },
   text: {
     fontWeight: "800",
