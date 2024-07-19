@@ -1,11 +1,10 @@
+import { LocalConstants } from "./../constants";
 import { useRef, useState } from "react";
 
 type TimeFormatted = {
   minutes: string;
   seconds: string;
 };
-
-const DEFAULT_TIME_IN_SECONDS = 5;
 
 type TimeContextIType = {
   time: number;
@@ -20,7 +19,7 @@ type TimeContextIType = {
 };
 
 export const useTime = (): TimeContextIType => {
-  const [time, setTime] = useState(DEFAULT_TIME_IN_SECONDS);
+  const [time, setTime] = useState(LocalConstants.DEFAULT_TIME_IN_SECONDS);
   const [isActive, setIsActive] = useState(false);
   const interval = useRef<any>(null);
 
@@ -43,7 +42,7 @@ export const useTime = (): TimeContextIType => {
   };
 
   const reset = () => {
-    setTime(DEFAULT_TIME_IN_SECONDS);
+    setTime(LocalConstants.DEFAULT_TIME_IN_SECONDS);
     setIsActive(false);
   };
 

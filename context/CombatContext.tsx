@@ -9,8 +9,7 @@ import {
 } from "@/types/CombatContext";
 import { Audio } from "expo-av";
 import { Vibration } from "react-native";
-
-const POINTS_TO_WIN = 7;
+import { LocalConstants } from "@/constants";
 
 const WINNER_COLORS: WinnerColors = {
   playerA: "#0800ff60",
@@ -72,7 +71,7 @@ export function CombatProvider({
 
   const playerA: Player = useMemo(
     () => ({
-      points: pointPlayerA + Math.trunc(faultPlayerB / 2),
+      points: pointPlayerA + Math.trunc(exitPlayerB / LocalConstants.MAX_EXITS),
       addPoint: addPointToPlayerA,
       quitPoint: quitPointToPlayerA,
       faults: {
@@ -87,22 +86,22 @@ export function CombatProvider({
       },
     }),
     [
-      addExitToPlayerA,
-      addFaultToPlayerA,
-      addPointToPlayerA,
-      exitPlayerA,
-      faultPlayerB,
-      faultPlayerA,
       pointPlayerA,
-      quitExitToPlayerA,
-      quitFaultToPlayerA,
+      exitPlayerB,
+      addPointToPlayerA,
       quitPointToPlayerA,
+      faultPlayerA,
+      addFaultToPlayerA,
+      quitFaultToPlayerA,
+      exitPlayerA,
+      addExitToPlayerA,
+      quitExitToPlayerA,
     ],
   );
 
   const playerB: Player = useMemo(
     () => ({
-      points: pointPlayerB + Math.trunc(faultPlayerA / 2),
+      points: pointPlayerB + Math.trunc(exitPlayerA / LocalConstants.MAX_EXITS),
       addPoint: addPointToPlayerB,
       quitPoint: quitPointToPlayerB,
       faults: {
@@ -120,8 +119,8 @@ export function CombatProvider({
       addExitToPlayerB,
       addFaultToPlayerB,
       addPointToPlayerB,
+      exitPlayerA,
       exitPlayerB,
-      faultPlayerA,
       faultPlayerB,
       pointPlayerB,
       quitExitToPlayerB,
@@ -169,14 +168,14 @@ export function CombatProvider({
   // Watchers ===========================
 
   useEffect(() => {
-    if (playerA.exits.value > 2) {
+    if (playerA.exits.value >= LocalConstants.MAX_EXITS) {
       resetExitsPlayerA();
       playerB.addPoint(1);
     }
   }, [playerA, playerB, resetExitsPlayerA]);
 
   useEffect(() => {
-    if (playerB.exits.value > 2) {
+    if (playerB.exits.value >= LocalConstants.MAX_EXITS) {
       resetExitsPlayerB();
       playerA.addPoint(1);
     }
@@ -203,9 +202,9 @@ export function CombatProvider({
       } else {
         setWinnerColor(null);
       }
-    } else if (playerA.points >= POINTS_TO_WIN) {
+    } else if (playerA.points >= LocalConstants.POINTS_TO_WIN) {
       setWinnerColor(WINNER_COLORS.playerA);
-    } else if (playerB.points >= POINTS_TO_WIN) {
+    } else if (playerB.points >= LocalConstants.POINTS_TO_WIN) {
       setWinnerColor(WINNER_COLORS.playerB);
     } else {
       setWinnerColor(null);
